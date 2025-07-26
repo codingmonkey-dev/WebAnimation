@@ -98,28 +98,19 @@ function launchRocket() {
     
     // 이전 애니메이션 리셋
     rocket.classList.remove('launching');
-    
+
     // 강제로 리플로우 트리거
     rocket.offsetHeight;
-    
-    // 발사 카운트다운
-    let countdown = 3;
-    const countdownInterval = setInterval(() => {
-        if (countdown > 0) {
-            console.log(`발사까지 ${countdown}초...`);
-            countdown--;
-        } else {
-            clearInterval(countdownInterval);
-            console.log('🚀 발사!');
-            rocket.classList.add('launching');
-        }
-    }, 1000);
-    
-    // 발사 완료 후 메시지
+
+    // 즉시 발사!
     setTimeout(() => {
-        alert('🌟 로켓이 성공적으로 우주로 발사되었습니다!');
+        rocket.classList.add('launching');
+    }, 100);
+    
+    // 발사 완료 후 자동 리셋
+    setTimeout(() => {
         resetRocket();
-    }, 8000);
+    }, 4000);
 }
 
 function resetRocket() {

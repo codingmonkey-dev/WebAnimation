@@ -432,33 +432,35 @@ body {
 
 .rocket.launching {
     /* 🔥 실습 23: 로켓 발사 애니메이션 적용 */
-    animation: _______________; /* rocketLaunch 6s ease-in-out forwards */
+    animation: _______________; /* rocketLaunch 4s ease-out forwards !important */
 }
 
 /* 🔥 실습 24: 로켓 발사 키프레임 - 진동부터 발사까지 */
 @keyframes rocketLaunch {
     0% {
         transform: _______________;  /* translateX(-50%) translateY(0) rotate(0deg) scale(1) */
+        opacity: 1;
     }
     /* 🔥 실습 25: 발사 전 진동 효과 */
-    10% {
+    15% {
         transform: _______________;  /* translateX(-50%) translateY(-5px) rotate(-2deg) scale(1.05) */
-    }
-    20% {
-        transform: _______________;  /* translateX(-50%) translateY(5px) rotate(2deg) scale(0.95) */
+        opacity: 1;
     }
     30% {
+        transform: _______________;  /* translateX(-50%) translateY(5px) rotate(2deg) scale(0.95) */
+        opacity: 1;
+    }
+    45% {
         transform: _______________;  /* translateX(-50%) translateY(-5px) rotate(-1deg) scale(1.02) */
+        opacity: 1;
     }
-    40% {
-        transform: _______________;  /* translateX(-50%) translateY(0) rotate(0deg) scale(1) */
-    }
-    50% {
+    60% {
         transform: _______________;  /* translateX(-50%) translateY(-50px) rotate(0deg) scale(1) */
+        opacity: 1;
     }
     100% {
         /* 🔥 실습 26: 최종 발사 - 위로 이동하며 회전하고 작아짐 */
-        transform: _______________;  /* translateX(-50%) translateY(-600px) rotate(360deg) scale(0.3) */
+        transform: _______________;  /* translateX(-50%) translateY(-800px) rotate(360deg) scale(0.2) */
         opacity: _______________;    /* 0 */
     }
 }
