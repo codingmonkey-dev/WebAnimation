@@ -1,0 +1,838 @@
+/* CSS 애니메이션 실습 - 실습본 (빈칸을 채워주세요!) */
+
+/* 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #2c3e50;
+}
+
+/* 헤더 */
+.header {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+/* 네비게이션 */
+.nav {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: #ecf0f1;
+    color: #2c3e50;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    /* 🔥 실습 1: 버튼에 transition 효과를 추가하세요 */
+    transition: _______________; /* 모든 속성에 0.3s ease 적용 */
+}
+
+.nav-btn:hover {
+    background: #3498db;
+    color: white;
+    /* 🔥 실습 2: 호버 시 위로 2px 이동하고 그림자 효과 추가 */
+    transform: _______________;
+    box-shadow: ______________;
+}
+
+.nav-btn.active {
+    background: #2c3e50;
+    color: white;
+}
+
+/* 섹션 공통 */
+.practice-section {
+    display: none;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.practice-section.active {
+    display: block;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+}
+
+.practice-area {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.controls {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.controls button {
+    margin: 0 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background: #3498db;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    /* 🔥 실습 3: 버튼에 transition 추가 */
+    transition: _______________;
+}
+
+.controls button:hover {
+    background: #2980b9;
+    /* 🔥 실습 4: 호버 시 1.05배 크기로 변경 */
+    transform: _______________;
+}
+
+.mission-box {
+    background: #e8f4f8;
+    border: 2px solid #3498db;
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.mission-box h3 {
+    color: #2980b9;
+    margin-bottom: 1rem;
+}
+
+.mission-box ol {
+    margin-left: 1.5rem;
+}
+
+.mission-box li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* =================================
+   예제 1: 자동차 레이싱 🏎️
+   ================================= */
+
+.racing-track {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(90deg, #95a5a6 0%, #7f8c8d 50%, #95a5a6 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 3px solid #2c3e50;
+}
+
+.racing-line {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: repeating-linear-gradient(
+        90deg,
+        #f1c40f 0px,
+        #f1c40f 20px,
+        transparent 20px,
+        transparent 40px
+    );
+    /* 🔥 실습 5: 도로 줄무늬가 움직이는 애니메이션 추가 */
+    animation: _______________; /* roadMove 2s linear infinite */
+}
+
+.racing-line:nth-child(1) { top: 25%; }
+.racing-line:nth-child(2) { top: 50%; }
+.racing-line:nth-child(3) { top: 75%; }
+
+/* 🔥 실습 6: 도로 움직임 키프레임 애니메이션 정의 */
+@keyframes roadMove {
+    from { 
+        transform: _______________;  /* translateX(0) */
+    }
+    to { 
+        transform: _______________;  /* translateX(-40px) */
+    }
+}
+
+.car {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    /* 🔥 실습 7: 자동차가 부드럽게 이동하도록 transition 추가 */
+    transition: _______________; /* all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) */
+}
+
+.red-car {
+    top: 15%;
+    left: 50px;
+}
+
+.blue-car {
+    top: 45%;
+    left: 50px;
+}
+
+.car:hover {
+    /* 🔥 실습 8: 호버 시 1.1배 크기와 그림자 효과 */
+    transform: _______________;  /* scale(1.1) */
+    filter: _______________;     /* drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) */
+}
+
+.car.racing {
+    /* 🔥 실습 9: 레이싱 시 화면 끝까지 이동 */
+    transform: _______________; /* translateX(calc(100vw - 200px)) */
+}
+
+/* 🔥 실습 10: 각 자동차마다 다른 타이밍 함수 적용 */
+.red-car.racing {
+    transition-timing-function: _______________;  /* cubic-bezier(0.55, 0.055, 0.675, 0.19) */
+}
+
+.blue-car.racing {
+    transition-timing-function: _______________;  /* cubic-bezier(0.25, 0.46, 0.45, 0.94) */
+    transition-delay: _______________;           /* 0.3s */
+}
+
+.car-sprite {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.finish-line {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: repeating-linear-gradient(
+        0deg,
+        #000 0px,
+        #000 20px,
+        #fff 20px,
+        #fff 40px
+    );
+}
+
+/* =================================
+   예제 2: 사과 떨어지기 🍎
+   ================================= */
+
+.apple-scene {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(180deg, #87CEEB 0%, #98FB98 70%, #8FBC8F 100%);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.tree {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    width: 200px;
+    height: 300px;
+}
+
+.tree-sprite {
+    width: 100%;
+    height: 100%;
+}
+
+.apple {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 80px;
+    left: 120px;
+    z-index: 10;
+}
+
+/* 🔥 실습 11: @starting-style 규칙으로 사과 초기 상태 설정 */
+@starting-style {
+    .apple {
+        opacity: _______________;      /* 0 */
+        transform: _______________;    /* scale(0) */
+    }
+}
+
+.apple {
+    opacity: 1;
+    transform: scale(1);
+    /* 🔥 실습 12: 사과가 나타날 때 부드러운 전환 효과 */
+    transition: _______________; /* opacity 0.5s ease, transform 0.5s ease */
+}
+
+.apple.falling {
+    /* 🔥 실습 13: 사과 낙하 애니메이션 적용 */
+    animation: _______________; /* appleFall 3s ease-in forwards */
+}
+
+/* 🔥 실습 14: 사과 낙하 키프레임 애니메이션 완성 */
+@keyframes appleFall {
+    0% {
+        transform: _______________; /* translateY(0) rotate(0deg) scale(1) */
+        opacity: 1;
+    }
+    60% {
+        transform: _______________; /* translateY(280px) rotate(180deg) scale(0.9) */
+        opacity: 1;
+    }
+    70% {
+        /* 🔥 실습 15: 바운스 효과 - 살짝 위로 튀어오르기 */
+        transform: _______________; /* translateY(270px) rotate(200deg) scale(1.1) */
+        opacity: 1;
+    }
+    80% {
+        transform: _______________; /* translateY(280px) rotate(220deg) scale(0.95) */
+        opacity: 1;
+    }
+    100% {
+        transform: _______________; /* translateY(280px) rotate(240deg) scale(1) */
+        opacity: 0.8;
+    }
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: #8FBC8F;
+    border-top: 3px solid #654321;
+}
+
+.basket {
+    position: absolute;
+    bottom: 50px;
+    right: 200px;
+    width: 80px;
+    height: 60px;
+    /* 🔥 실습 16: 바구니 이동을 위한 transition 설정 */
+    transition: _______________; /* all 1s ease-out */
+}
+
+.basket.move-left {
+    /* 🔥 실습 17: 왼쪽으로 150px 이동 */
+    transform: _______________;  /* translateX(-150px) */
+}
+
+.basket.move-right {
+    /* 🔥 실습 18: 오른쪽으로 150px 이동 */
+    transform: _______________;  /* translateX(150px) */
+}
+
+/* =================================
+   예제 3: 로켓 발사 🚀
+   ================================= */
+
+.rocket-scene {
+    position: relative;
+    height: 500px;
+    background: linear-gradient(180deg, #000428 0%, #004e92 100%);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    /* 🔥 실습 19: 별 깜빡임 애니메이션 */
+    animation: _______________; /* twinkle 2s ease-in-out infinite alternate */
+}
+
+/* 🔥 실습 20: 별 깜빡임 키프레임 정의 */
+@keyframes twinkle {
+    from { 
+        opacity: _______________;    /* 0.3 */
+        transform: ______________;  /* scale(1) */
+    }
+    to { 
+        opacity: _______________;    /* 1 */
+        transform: ______________;  /* scale(1.5) */
+    }
+}
+
+.rocket {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 120px;
+    z-index: 10;
+}
+
+/* 🔥 실습 21: 로켓 초기 상태 설정 - @starting-style 사용 */
+@starting-style {
+    .rocket {
+        opacity: _______________;                    /* 0 */
+        transform: _______________;                  /* translateX(-50%) scale(0) */
+    }
+}
+
+.rocket {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    /* 🔥 실습 22: 로켓 등장 transition */
+    transition: _______________; /* opacity 1s ease, transform 1s ease */
+}
+
+.rocket.launching {
+    /* 🔥 실습 23: 로켓 발사 애니메이션 적용 */
+    animation: _______________; /* rocketLaunch 6s ease-in-out forwards */
+}
+
+/* 🔥 실습 24: 로켓 발사 키프레임 - 진동부터 발사까지 */
+@keyframes rocketLaunch {
+    0% {
+        transform: _______________;  /* translateX(-50%) translateY(0) rotate(0deg) scale(1) */
+    }
+    /* 🔥 실습 25: 발사 전 진동 효과 */
+    10% {
+        transform: _______________;  /* translateX(-50%) translateY(-5px) rotate(-2deg) scale(1.05) */
+    }
+    20% {
+        transform: _______________;  /* translateX(-50%) translateY(5px) rotate(2deg) scale(0.95) */
+    }
+    30% {
+        transform: _______________;  /* translateX(-50%) translateY(-5px) rotate(-1deg) scale(1.02) */
+    }
+    40% {
+        transform: _______________;  /* translateX(-50%) translateY(0) rotate(0deg) scale(1) */
+    }
+    50% {
+        transform: _______________;  /* translateX(-50%) translateY(-50px) rotate(0deg) scale(1) */
+    }
+    100% {
+        /* 🔥 실습 26: 최종 발사 - 위로 이동하며 회전하고 작아짐 */
+        transform: _______________;  /* translateX(-50%) translateY(-600px) rotate(360deg) scale(0.3) */
+        opacity: _______________;    /* 0 */
+    }
+}
+
+.fire {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 40px;
+    background: radial-gradient(circle, #ff6b35 0%, #f7931e 50%, #ff4757 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0;
+    /* 🔥 실습 27: 불꽃 애니메이션 */
+    animation: _______________; /* fire 0.1s ease-in-out infinite alternate */
+}
+
+.rocket.launching .fire {
+    opacity: 1;
+}
+
+/* 🔥 실습 28: 불꽃 애니메이션 키프레임 */
+@keyframes fire {
+    from { 
+        transform: _______________;  /* translateX(-50%) scale(1) */
+        background: radial-gradient(circle, #ff6b35 0%, #f7931e 50%, #ff4757 100%);
+    }
+    to { 
+        transform: _______________;  /* translateX(-50%) scale(1.2) */
+        background: radial-gradient(circle, #ff4757 0%, #ff6b35 50%, #f7931e 100%);
+    }
+}
+
+.launch-pad {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 50px;
+}
+
+.clouds {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    opacity: 0.7;
+}
+
+.cloud1 {
+    width: 80px;
+    height: 40px;
+    top: 20%;
+    left: 20%;
+    /* 🔥 실습 29: 구름 둥둥 떠다니는 애니메이션 */
+    animation: _______________; /* cloudFloat 6s ease-in-out infinite */
+}
+
+.cloud2 {
+    width: 60px;
+    height: 30px;
+    top: 30%;
+    right: 20%;
+    animation: cloudFloat 8s ease-in-out infinite reverse;
+}
+
+.cloud3 {
+    width: 100px;
+    height: 50px;
+    top: 50%;
+    left: 10%;
+    animation: cloudFloat 10s ease-in-out infinite;
+}
+
+/* 🔥 실습 30: 구름 둥둥 애니메이션 키프레임 */
+@keyframes cloudFloat {
+    0%, 100% { 
+        transform: _______________;  /* translateX(0) */
+    }
+    50% { 
+        transform: _______________;  /* translateX(30px) */
+    }
+}
+
+/* =================================
+   예제 4: 카드 뒤집기 🃏
+   ================================= */
+
+.card-game {
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    /* 🔥 실습 31: 3D 효과를 위한 perspective 설정 */
+    perspective: _______________;  /* 1000px */
+}
+
+.card {
+    position: relative;
+    width: 120px;
+    height: 180px;
+    cursor: pointer;
+    /* 🔥 실습 32: 카드 뒤집기 transition과 3D 설정 */
+    transition: _______________;        /* transform 0.6s ease-in-out */
+    transform-style: _______________;   /* preserve-3d */
+}
+
+.card:hover {
+    /* 🔥 실습 33: 호버 시 1.05배 확대 */
+    transform: _______________;  /* scale(1.05) */
+}
+
+.card.flipped {
+    /* 🔥 실습 34: 뒤집힌 상태 - Y축으로 180도 회전 */
+    transform: _______________;  /* rotateY(180deg) */
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* 🔥 실습 35: 뒷면 숨김 설정 */
+    backface-visibility: _______________;  /* hidden */
+    border-radius: 15px;
+    border: 3px solid #2c3e50;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-back {
+    /* 🔥 실습 36: 카드 뒷면을 미리 180도 회전 */
+    transform: _______________;  /* rotateY(180deg) */
+}
+
+.card svg {
+    width: 90%;
+    height: 90%;
+}
+
+.score-board {
+    background: #e8f4f8;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.score-board h3 {
+    color: #2980b9;
+    font-size: 1.5rem;
+}
+
+/* =================================
+   예제 5: 파도 효과 🌊
+   ================================= */
+
+.ocean-scene {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(180deg, #87CEEB 0%, #4682B4 50%, #006994 100%);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.sky {
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 100%);
+}
+
+.sun {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
+    border-radius: 50%;
+    /* 🔥 실습 37: 태양 광선 애니메이션 */
+    animation: _______________; /* sunRays 3s ease-in-out infinite alternate */
+}
+
+/* 🔥 실습 38: 태양 광선 키프레임 */
+@keyframes sunRays {
+    from { 
+        box-shadow: _______________;  /* 0 0 20px #FFD700 */
+    }
+    to { 
+        box-shadow: _______________;  /* 0 0 40px #FFD700, 0 0 60px #FFA500 */
+    }
+}
+
+.ocean {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(65, 105, 225, 0.8) 0%, rgba(0, 105, 148, 0.9) 100%);
+    border-radius: 50% 50% 0 0;
+}
+
+.wave1 {
+    /* 🔥 실습 39: 첫 번째 파도 애니메이션 */
+    animation: _______________; /* waveMove 3s ease-in-out infinite */
+    z-index: 3;
+}
+
+.wave2 {
+    /* 🔥 실습 40: 두 번째 파도 - 역방향으로 다른 속도 */
+    animation: _______________; /* waveMove 4s ease-in-out infinite reverse */
+    z-index: 2;
+    opacity: 0.7;
+    height: 80px;
+}
+
+.wave3 {
+    animation: waveMove 5s ease-in-out infinite;
+    z-index: 1;
+    opacity: 0.5;
+    height: 60px;
+}
+
+/* 🔥 실습 41: 파도 움직임 키프레임 완성 */
+@keyframes waveMove {
+    0%, 100% { 
+        transform: _______________; /* translateX(-50%) rotateZ(0deg) */
+        border-radius: _______________;  /* 50% 50% 0 0 */
+    }
+    25% { 
+        transform: _______________; /* translateX(-45%) rotateZ(0.5deg) */
+        border-radius: _______________;  /* 60% 40% 0 0 */
+    }
+    50% { 
+        transform: _______________; /* translateX(-40%) rotateZ(0deg) */
+        border-radius: _______________;  /* 40% 60% 0 0 */
+    }
+    75% { 
+        transform: _______________; /* translateX(-45%) rotateZ(-0.5deg) */
+        border-radius: _______________;  /* 50% 50% 0 0 */
+    }
+}
+
+.boat {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 120px;
+    height: 80px;
+    z-index: 4;
+    /* 🔥 실습 42: 보트 흔들림 애니메이션 */
+    animation: _______________; /* boatRock 3s ease-in-out infinite */
+}
+
+/* 🔥 실습 43: 보트 흔들림 키프레임 */
+@keyframes boatRock {
+    0%, 100% { 
+        transform: _______________;  /* translateY(0) rotate(0deg) */
+    }
+    25% { 
+        transform: _______________;  /* translateY(-10px) rotate(2deg) */
+    }
+    50% { 
+        transform: _______________;  /* translateY(-5px) rotate(0deg) */
+    }
+    75% { 
+        transform: _______________;  /* translateY(-10px) rotate(-2deg) */
+    }
+}
+
+.fish-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.fish {
+    position: absolute;
+    font-size: 2rem;
+    /* 🔥 실습 44: 물고기 헤엄치기 애니메이션 */
+    animation: _______________; /* fishSwim 6s linear infinite */
+}
+
+.fish1 {
+    top: 60%;
+    animation-delay: 0s;
+}
+
+.fish2 {
+    top: 70%;
+    animation-delay: 2s;
+}
+
+.fish3 {
+    top: 80%;
+    animation-delay: 4s;
+}
+
+/* 🔥 실습 45: 물고기 헤엄치기 키프레임 - 좌우 왕복 */
+@keyframes fishSwim {
+    0% { 
+        left: _______________;       /* -100px */
+        transform: _______________;  /* scaleX(1) */
+    }
+    45% { 
+        left: 50%;
+        transform: scaleX(1);
+    }
+    55% { 
+        left: 50%;
+        /* 🔥 실습 46: 방향 바꿔서 돌아가기 */
+        transform: _______________;  /* scaleX(-1) */
+    }
+    100% { 
+        left: _______________;       /* calc(100% + 100px) */
+        transform: scaleX(-1);
+    }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .practice-section {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+}
+
+/* 접근성 - 애니메이션 줄이기 선호하는 사용자를 위한 설정 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* 🎉 축하합니다! 모든 실습을 완료하셨습니다! 
+   완성된 코드와 비교해보고 다양한 값들을 변경해보며 실험해보세요! */
