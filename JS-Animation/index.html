@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 애니메이션 실습 교재</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>💻 JavaScript 애니메이션 실습장</h1>
+        <p>프로그래밍으로 창조하는 인터랙티브 애니메이션!</p>
+    </header>
+
+    <nav class="nav">
+        <button class="nav-btn active" data-section="mouse-tracker">🎯 마우스 트래커</button>
+        <button class="nav-btn" data-section="physics">🎮 물리 시뮬레이션</button>
+        <button class="nav-btn" data-section="canvas">🎨 Canvas 파티클</button>
+        <button class="nav-btn" data-section="chart">📊 동적 차트</button>
+    </nav>
+
+    <!-- 예제 1: 마우스 트래커 (실시간 상호작용) -->
+    <section id="mouse-tracker" class="practice-section active">
+        <div class="section-header">
+            <h2>🎯 마우스 트래커</h2>
+            <p><strong>학습 목표:</strong> 마우스 이벤트와 실시간 DOM 조작으로 상호작용 애니메이션</p>
+        </div>
+        
+        <div class="practice-area">
+            <div class="mouse-tracker-area" id="trackerArea">
+                <div class="crosshair" id="crosshair">
+                    <div class="crosshair-dot"></div>
+                    <div class="crosshair-line crosshair-horizontal"></div>
+                    <div class="crosshair-line crosshair-vertical"></div>
+                </div>
+                
+                <div class="particle-container" id="particleContainer"></div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span>X: </span><span id="mouseX">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Y: </span><span id="mouseY">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>속도: </span><span id="mouseSpeed">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>파티클: </span><span id="particleCount">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="toggleTracking()">🎯 추적 ON/OFF</button>
+                <button class="control-btn" onclick="clearParticles()">🧹 파티클 제거</button>
+                <button class="control-btn" onclick="changeMode()">🎨 모드 변경</button>
+            </div>
+        </div>
+        
+        <div class="mission-box">
+            <h3>📝 미션</h3>
+            <ol>
+                <li><strong>마우스 추적:</strong> 마우스 위치를 실시간으로 감지하고 십자선 이동</li>
+                <li><strong>파티클 생성:</strong> 마우스 움직임에 따라 파티클 동적 생성</li>
+                <li><strong>속도 계산:</strong> 마우스 이동 속도 계산하여 시각적 피드백</li>
+                <li><strong>생명주기 관리:</strong> 파티클의 생성, 애니메이션, 제거 관리</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- 예제 2: 물리 시뮬레이션 (중력, 충돌) -->
+    <section id="physics" class="practice-section">
+        <div class="section-header">
+            <h2>🎮 물리 시뮬레이션</h2>
+            <p><strong>학습 목표:</strong> 중력, 충돌 감지, 속도 계산으로 물리 기반 애니메이션</p>
+        </div>
+        
+        <div class="practice-area">
+            <div class="physics-world" id="physicsWorld">
+                <div class="ball" id="ball1" data-ball="1">🔴</div>
+                <div class="ball" id="ball2" data-ball="2">🔵</div>
+                <div class="ball" id="ball3" data-ball="3">🟢</div>
+                
+                <div class="platform platform1"></div>
+                <div class="platform platform2"></div>
+                <div class="platform platform3"></div>
+                
+                <div class="physics-stats">
+                    <div class="gravity-indicator">
+                        <span>중력: </span>
+                        <div class="gravity-bar">
+                            <div class="gravity-fill" id="gravityFill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="dropBalls()">🎾 공 떨어뜨리기</button>
+                <button class="control-btn" onclick="resetBalls()">🔄 위치 리셋</button>
+                <button class="control-btn" onclick="changeGravity()">⚖️ 중력 변경</button>
+                <button class="control-btn" onclick="addBall()">➕ 공 추가</button>
+            </div>
+        </div>
+        
+        <div class="mission-box">
+            <h3>📝 미션</h3>
+            <ol>
+                <li><strong>중력 구현:</strong> 시간에 따른 가속도와 속도 계산</li>
+                <li><strong>충돌 감지:</strong> 공과 플랫폼, 벽면과의 충돌 처리</li>
+                <li><strong>반사 구현:</strong> 충돌 시 반대 방향으로 속도 변경</li>
+                <li><strong>에너지 감쇠:</strong> 현실적인 바운스를 위한 에너지 손실</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- 예제 3: Canvas 파티클 시스템 -->
+    <section id="canvas" class="practice-section">
+        <div class="section-header">
+            <h2>🎨 Canvas 파티클</h2>
+            <p><strong>학습 목표:</strong> Canvas 2D API로 고성능 파티클 시스템 구현</p>
+        </div>
+        
+        <div class="practice-area">
+            <div class="canvas-container">
+                <canvas id="particleCanvas" width="800" height="500"></canvas>
+                <div class="canvas-overlay">
+                    <div class="fps-counter">FPS: <span id="fpsDisplay">60</span></div>
+                    <div class="particle-counter">Particles: <span id="canvasParticleCount">0</span></div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="startFireworks()">🎆 불꽃놀이</button>
+                <button class="control-btn" onclick="startRain()">🌧️ 비 효과</button>
+                <button class="control-btn" onclick="startSpiral()">🌀 나선 효과</button>
+                <button class="control-btn" onclick="clearCanvas()">🧹 캔버스 클리어</button>
+            </div>
+        </div>
+        
+        <div class="mission-box">
+            <h3>📝 미션</h3>
+            <ol>
+                <li><strong>Canvas 초기화:</strong> 2D 컨텍스트 생성과 애니메이션 루프 설정</li>
+                <li><strong>파티클 클래스:</strong> 위치, 속도, 생명주기를 가진 파티클 객체</li>
+                <li><strong>렌더링 최적화:</strong> requestAnimationFrame과 더블 버퍼링</li>
+                <li><strong>다양한 효과:</strong> 불꽃, 비, 나선 등 다른 파티클 패턴</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- 예제 4: 동적 차트 애니메이션 -->
+    <section id="chart" class="practice-section">
+        <div class="section-header">
+            <h2>📊 동적 차트</h2>
+            <p><strong>학습 목표:</strong> 데이터 기반 실시간 차트 애니메이션과 상호작용</p>
+        </div>
+        
+        <div class="practice-area">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>실시간 데이터 차트</h3>
+                    <div class="chart-controls">
+                        <select id="chartType">
+                            <option value="bar">막대 차트</option>
+                            <option value="line">선 차트</option>
+                            <option value="pie">원형 차트</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="chart-area" id="chartArea">
+                    <svg id="chartSvg" width="700" height="400">
+                        <defs>
+                            <linearGradient id="barGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3498db;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <div class="chart-legend" id="chartLegend">
+                    <!-- 범례가 동적으로 생성됩니다 -->
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="generateData()">📈 새 데이터</button>
+                <button class="control-btn" onclick="animateChart()">🎬 차트 애니메이션</button>
+                <button class="control-btn" onclick="addDataPoint()">➕ 데이터 추가</button>
+                <button class="control-btn" onclick="startRealtime()">⏱️ 실시간 모드</button>
+            </div>
+        </div>
+        
+        <div class="mission-box">
+            <h3>📝 미션</h3>
+            <ol>
+                <li><strong>SVG 차트:</strong> SVG 요소로 막대, 선, 원형 차트 생성</li>
+                <li><strong>데이터 바인딩:</strong> JavaScript 데이터를 시각적 요소로 변환</li>
+                <li><strong>애니메이션 전환:</strong> 데이터 변경 시 부드러운 전환 효과</li>
+                <li><strong>실시간 업데이트:</strong> 타이머를 활용한 실시간 데이터 스트림</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- SVG 스프라이트 정의 -->
+    <svg style="display: none;">
+        <defs>
+            <!-- 파티클 모양들 -->
+            <g id="star-particle">
+                <polygon points="12,2 15,8 22,8 17,13 19,20 12,16 5,20 7,13 2,8 9,8" fill="#FFD700"/>
+            </g>
+            
+            <g id="circle-particle">
+                <circle cx="12" cy="12" r="8" fill="#3498db"/>
+            </g>
+            
+            <g id="heart-particle">
+                <path d="M12,21.35l-1.45-1.32C5.4,15.36,2,12.28,2,8.5 2,5.42,4.42,3,7.5,3c1.74,0,3.41,0.81,4.5,2.09C13.09,3.81,14.76,3,16.5,3 C19.58,3,22,5.42,22,8.5c0,3.78-3.4,6.86-8.55,11.54L12,21.35z" fill="#e74c3c"/>
+            </g>
+        </defs>
+    </svg>
+
+    <script src="script.js"></script>
+</body>
+</html>

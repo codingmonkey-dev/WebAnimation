@@ -1,0 +1,539 @@
+/* JavaScript 애니메이션 실습 - CSS 완성본 */
+
+/* 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    min-height: 100vh;
+    color: #fff;
+}
+
+/* 헤더 */
+.header {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* 네비게이션 */
+.nav {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-btn:hover {
+    background: rgba(243, 156, 18, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn.active {
+    background: #f39c12;
+    color: #2c3e50;
+    box-shadow: 0 4px 8px rgba(243, 156, 18, 0.3);
+}
+
+/* 섹션 공통 */
+.practice-section {
+    display: none;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.practice-section.active {
+    display: block;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #f39c12;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.practice-area {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.controls {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.control-btn {
+    margin: 0 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background: #3498db;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+.mission-box {
+    background: rgba(52, 152, 219, 0.1);
+    border: 2px solid #3498db;
+    border-radius: 15px;
+    padding: 1.5rem;
+    backdrop-filter: blur(5px);
+}
+
+.mission-box h3 {
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+.mission-box ol {
+    margin-left: 1.5rem;
+}
+
+.mission-box li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* =================================
+   예제 1: 마우스 트래커
+   ================================= */
+
+.mouse-tracker-area {
+    position: relative;
+    height: 400px;
+    background: radial-gradient(circle at center, rgba(52, 152, 219, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: none;
+    border: 2px solid rgba(52, 152, 219, 0.3);
+}
+
+.crosshair {
+    position: absolute;
+    pointer-events: none;
+    z-index: 100;
+    transition: all 0.1s ease;
+}
+
+.crosshair-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #e74c3c;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #e74c3c;
+}
+
+.crosshair-line {
+    position: absolute;
+    background: rgba(231, 76, 60, 0.6);
+    transform: translate(-50%, -50%);
+}
+
+.crosshair-horizontal {
+    width: 40px;
+    height: 2px;
+    top: 0;
+    left: 0;
+}
+
+.crosshair-vertical {
+    width: 2px;
+    height: 40px;
+    top: 0;
+    left: 0;
+}
+
+.particle-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.stats {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+.stat-item {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #f39c12;
+}
+
+/* =================================
+   예제 2: 물리 시뮬레이션
+   ================================= */
+
+.physics-world {
+    position: relative;
+    height: 500px;
+    background: linear-gradient(180deg, rgba(135, 206, 235, 0.3) 0%, rgba(34, 139, 34, 0.3) 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid rgba(52, 152, 219, 0.3);
+}
+
+.ball {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.1s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ball:hover {
+    transform: scale(1.1);
+}
+
+#ball1 { top: 50px; left: 100px; }
+#ball2 { top: 50px; left: 200px; }
+#ball3 { top: 50px; left: 300px; }
+
+.platform {
+    position: absolute;
+    background: linear-gradient(45deg, #8e44ad, #9b59b6);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.platform1 {
+    width: 150px;
+    height: 20px;
+    bottom: 200px;
+    left: 100px;
+}
+
+.platform2 {
+    width: 120px;
+    height: 20px;
+    bottom: 150px;
+    right: 200px;
+}
+
+.platform3 {
+    width: 200px;
+    height: 20px;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.physics-stats {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.gravity-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gravity-bar {
+    width: 100px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.gravity-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2ecc71, #e74c3c);
+    border-radius: 5px;
+    transition: width 0.3s ease;
+    width: 50%;
+}
+
+/* =================================
+   예제 3: Canvas 파티클
+   ================================= */
+
+.canvas-container {
+    position: relative;
+    text-align: center;
+}
+
+#particleCanvas {
+    background: radial-gradient(circle at center, #1e3c72 0%, #2a5298 100%);
+    border-radius: 15px;
+    border: 2px solid rgba(52, 152, 219, 0.3);
+    cursor: crosshair;
+}
+
+.canvas-overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fps-counter,
+.particle-counter {
+    background: rgba(0, 0, 0, 0.7);
+    color: #f39c12;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+/* =================================
+   예제 4: 동적 차트
+   ================================= */
+
+.chart-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.chart-header h3 {
+    color: #f39c12;
+    font-size: 1.5rem;
+}
+
+.chart-controls select {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.chart-controls select option {
+    background: #2c3e50;
+    color: #fff;
+}
+
+.chart-area {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#chartSvg {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+}
+
+/* SVG 차트 스타일 */
+.chart-bar {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.chart-bar:hover {
+    opacity: 0.8;
+    transform: scaleY(1.05);
+}
+
+.chart-line {
+    fill: none;
+    stroke-width: 3;
+    transition: all 0.3s ease;
+}
+
+.chart-point {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.chart-point:hover {
+    r: 8;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .practice-section {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .control-btn {
+        width: 200px;
+    }
+    
+    #particleCanvas {
+        width: 100%;
+        max-width: 400px;
+        height: 300px;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    #chartSvg {
+        width: 100%;
+        max-width: 400px;
+        height: 300px;
+    }
+}
+
+/* 접근성 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* 커스텀 스크롤바 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(243, 156, 18, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(243, 156, 18, 0.8);
+}
