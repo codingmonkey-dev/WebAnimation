@@ -365,195 +365,9 @@ body {
     transform: _______________;  /* translateX(150px) */
 }
 
-/* =================================
-   예제 3: 로켓 발사 🚀
-   ================================= */
-
-.rocket-scene {
-    position: relative;
-    height: 500px;
-    background: linear-gradient(180deg, #000428 0%, #004e92 100%);
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-.stars {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.star {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    /* 🔥 실습 19: 별 깜빡임 애니메이션 */
-    animation: _______________; /* twinkle 2s ease-in-out infinite alternate */
-}
-
-/* 🔥 실습 20: 별 깜빡임 키프레임 정의 */
-@keyframes twinkle {
-    from { 
-        opacity: _______________;    /* 0.3 */
-        transform: ______________;  /* scale(1) */
-    }
-    to { 
-        opacity: _______________;    /* 1 */
-        transform: ______________;  /* scale(1.5) */
-    }
-}
-
-.rocket {
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 120px;
-    z-index: 10;
-}
-
-/* 🔥 실습 21: 로켓 초기 상태 설정 - @starting-style 사용 */
-@starting-style {
-    .rocket {
-        opacity: _______________;                    /* 0 */
-        transform: _______________;                  /* translateX(-50%) scale(0) */
-    }
-}
-
-.rocket {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-    /* 🔥 실습 22: 로켓 등장 transition */
-    transition: _______________; /* opacity 1s ease, transform 1s ease */
-}
-
-.rocket.launching {
-    /* 🔥 실습 23: 로켓 발사 애니메이션 적용 */
-    animation: _______________; /* rocketLaunch 4s ease-out forwards !important */
-}
-
-/* 🔥 실습 24: 로켓 발사 키프레임 - 진동부터 발사까지 */
-@keyframes rocketLaunch {
-    0% {
-        transform: _______________;  /* translateX(-50%) translateY(0) rotate(0deg) scale(1) */
-        opacity: 1;
-    }
-    /* 🔥 실습 25: 발사 전 진동 효과 */
-    15% {
-        transform: _______________;  /* translateX(-50%) translateY(-5px) rotate(-2deg) scale(1.05) */
-        opacity: 1;
-    }
-    30% {
-        transform: _______________;  /* translateX(-50%) translateY(5px) rotate(2deg) scale(0.95) */
-        opacity: 1;
-    }
-    45% {
-        transform: _______________;  /* translateX(-50%) translateY(-5px) rotate(-1deg) scale(1.02) */
-        opacity: 1;
-    }
-    60% {
-        transform: _______________;  /* translateX(-50%) translateY(-50px) rotate(0deg) scale(1) */
-        opacity: 1;
-    }
-    100% {
-        /* 🔥 실습 26: 최종 발사 - 위로 이동하며 회전하고 작아짐 */
-        transform: _______________;  /* translateX(-50%) translateY(-800px) rotate(360deg) scale(0.2) */
-        opacity: _______________;    /* 0 */
-    }
-}
-
-.fire {
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 40px;
-    background: radial-gradient(circle, #ff6b35 0%, #f7931e 50%, #ff4757 100%);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    opacity: 0;
-    /* 🔥 실습 27: 불꽃 애니메이션 */
-    animation: _______________; /* fire 0.1s ease-in-out infinite alternate */
-}
-
-.rocket.launching .fire {
-    opacity: 1;
-}
-
-/* 🔥 실습 28: 불꽃 애니메이션 키프레임 */
-@keyframes fire {
-    from { 
-        transform: _______________;  /* translateX(-50%) scale(1) */
-        background: radial-gradient(circle, #ff6b35 0%, #f7931e 50%, #ff4757 100%);
-    }
-    to { 
-        transform: _______________;  /* translateX(-50%) scale(1.2) */
-        background: radial-gradient(circle, #ff4757 0%, #ff6b35 50%, #f7931e 100%);
-    }
-}
-
-.launch-pad {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 50px;
-}
-
-.clouds {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.cloud {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50px;
-    opacity: 0.7;
-}
-
-.cloud1 {
-    width: 80px;
-    height: 40px;
-    top: 20%;
-    left: 20%;
-    /* 🔥 실습 29: 구름 둥둥 떠다니는 애니메이션 */
-    animation: _______________; /* cloudFloat 6s ease-in-out infinite */
-}
-
-.cloud2 {
-    width: 60px;
-    height: 30px;
-    top: 30%;
-    right: 20%;
-    animation: cloudFloat 8s ease-in-out infinite reverse;
-}
-
-.cloud3 {
-    width: 100px;
-    height: 50px;
-    top: 50%;
-    left: 10%;
-    animation: cloudFloat 10s ease-in-out infinite;
-}
-
-/* 🔥 실습 30: 구름 둥둥 애니메이션 키프레임 */
-@keyframes cloudFloat {
-    0%, 100% { 
-        transform: _______________;  /* translateX(0) */
-    }
-    50% { 
-        transform: _______________;  /* translateX(30px) */
-    }
-}
 
 /* =================================
-   예제 4: 카드 뒤집기 🃏
+   예제 3: 카드 뒤집기 🃏
    ================================= */
 
 .card-game {
@@ -565,7 +379,7 @@ body {
     justify-content: center;
     gap: 2rem;
     margin-bottom: 2rem;
-    /* 🔥 실습 31: 3D 효과를 위한 perspective 설정 */
+    /* 🔥 실습 19: 3D 효과를 위한 perspective 설정 */
     perspective: _______________;  /* 1000px */
 }
 
@@ -574,18 +388,18 @@ body {
     width: 120px;
     height: 180px;
     cursor: pointer;
-    /* 🔥 실습 32: 카드 뒤집기 transition과 3D 설정 */
+    /* 🔥 실습 20: 카드 뒤집기 transition과 3D 설정 */
     transition: _______________;        /* transform 0.6s ease-in-out */
     transform-style: _______________;   /* preserve-3d */
 }
 
 .card:hover {
-    /* 🔥 실습 33: 호버 시 1.05배 확대 */
+    /* 🔥 실습 21: 호버 시 1.05배 확대 */
     transform: _______________;  /* scale(1.05) */
 }
 
 .card.flipped {
-    /* 🔥 실습 34: 뒤집힌 상태 - Y축으로 180도 회전 */
+    /* 🔥 실습 22: 뒤집힌 상태 - Y축으로 180도 회전 */
     transform: _______________;  /* rotateY(180deg) */
 }
 
@@ -628,7 +442,7 @@ body {
 }
 
 /* =================================
-   예제 5: 파도 효과 🌊
+   예제 4: 파도 효과 🌊
    ================================= */
 
 .ocean-scene {
@@ -654,11 +468,11 @@ body {
     height: 60px;
     background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
     border-radius: 50%;
-    /* 🔥 실습 37: 태양 광선 애니메이션 */
+    /* 🔥 실습 23: 태양 광선 애니메이션 */
     animation: _______________; /* sunRays 3s ease-in-out infinite alternate */
 }
 
-/* 🔥 실습 38: 태양 광선 키프레임 */
+/* 🔥 실습 24: 태양 광선 키프레임 */
 @keyframes sunRays {
     from { 
         box-shadow: _______________;  /* 0 0 20px #FFD700 */
@@ -685,13 +499,13 @@ body {
 }
 
 .wave1 {
-    /* 🔥 실습 39: 첫 번째 파도 애니메이션 */
+    /* 🔥 실습 25: 첫 번째 파도 애니메이션 */
     animation: _______________; /* waveMove 3s ease-in-out infinite */
     z-index: 3;
 }
 
 .wave2 {
-    /* 🔥 실습 40: 두 번째 파도 - 역방향으로 다른 속도 */
+    /* 🔥 실습 26: 두 번째 파도 - 역방향으로 다른 속도 */
     animation: _______________; /* waveMove 4s ease-in-out infinite reverse */
     z-index: 2;
     opacity: 0.7;
@@ -705,7 +519,7 @@ body {
     height: 60px;
 }
 
-/* 🔥 실습 41: 파도 움직임 키프레임 완성 */
+/* 🔥 실습 27: 파도 움직임 키프레임 완성 */
 @keyframes waveMove {
     0%, 100% { 
         transform: _______________; /* translateX(-50%) rotateZ(0deg) */
@@ -732,11 +546,11 @@ body {
     width: 120px;
     height: 80px;
     z-index: 4;
-    /* 🔥 실습 42: 보트 흔들림 애니메이션 */
+    /* 🔥 실습 28: 보트 흔들림 애니메이션 */
     animation: _______________; /* boatRock 3s ease-in-out infinite */
 }
 
-/* 🔥 실습 43: 보트 흔들림 키프레임 */
+/* 🔥 실습 29: 보트 흔들림 키프레임 */
 @keyframes boatRock {
     0%, 100% { 
         transform: _______________;  /* translateY(0) rotate(0deg) */
@@ -762,7 +576,7 @@ body {
 .fish {
     position: absolute;
     font-size: 2rem;
-    /* 🔥 실습 44: 물고기 헤엄치기 애니메이션 */
+    /* 🔥 실습 30: 물고기 헤엄치기 애니메이션 */
     animation: _______________; /* fishSwim 6s linear infinite */
 }
 
@@ -781,7 +595,7 @@ body {
     animation-delay: 4s;
 }
 
-/* 🔥 실습 45: 물고기 헤엄치기 키프레임 - 좌우 왕복 */
+/* 🔥 실습 31: 물고기 헤엄치기 키프레임 - 좌우 왕복 */
 @keyframes fishSwim {
     0% { 
         left: _______________;       /* -100px */
@@ -793,7 +607,7 @@ body {
     }
     55% { 
         left: 50%;
-        /* 🔥 실습 46: 방향 바꿔서 돌아가기 */
+        /* 🔥 실습 32: 방향 바꿔서 돌아가기 */
         transform: _______________;  /* scaleX(-1) */
     }
     100% { 

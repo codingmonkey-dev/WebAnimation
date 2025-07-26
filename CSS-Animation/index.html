@@ -15,7 +15,6 @@
     <nav class="nav">
         <button class="nav-btn active" data-section="racing">🏎️ 자동차 레이싱</button>
         <button class="nav-btn" data-section="apple">🍎 사과 떨어지기</button>
-        <button class="nav-btn" data-section="rocket">🚀 로켓 발사</button>
         <button class="nav-btn" data-section="cards">🃏 카드 뒤집기</button>
         <button class="nav-btn" data-section="waves">🌊 파도 효과</button>
     </nav>
@@ -113,62 +112,7 @@
         </div>
     </section>
 
-    <!-- 예제 3: 로켓 발사 (@starting-style & Complex Animation) -->
-    <section id="rocket" class="practice-section">
-        <div class="section-header">
-            <h2>🚀 로켓 발사</h2>
-            <p><strong>학습 목표:</strong> @starting-style과 복합 애니메이션으로 드라마틱한 효과</p>
-        </div>
-        
-        <div class="practice-area">
-            <div class="rocket-scene">
-                <div class="stars">
-                    <div class="star" style="top: 10%; left: 20%;"></div>
-                    <div class="star" style="top: 20%; left: 80%;"></div>
-                    <div class="star" style="top: 30%; left: 10%;"></div>
-                    <div class="star" style="top: 40%; left: 90%;"></div>
-                    <div class="star" style="top: 60%; left: 30%;"></div>
-                    <div class="star" style="top: 70%; left: 70%;"></div>
-                </div>
-                
-                <div class="rocket" id="rocket">
-                    <svg class="rocket-sprite" viewBox="0 0 80 120">
-                        <use href="#rocket-sprite"></use>
-                    </svg>
-                    <div class="fire" id="rocketFire"></div>
-                </div>
-                
-                <div class="launch-pad">
-                    <svg class="pad-sprite" viewBox="0 0 150 50">
-                        <use href="#launch-pad-sprite"></use>
-                    </svg>
-                </div>
-                
-                <div class="clouds">
-                    <div class="cloud cloud1"></div>
-                    <div class="cloud cloud2"></div>
-                    <div class="cloud cloud3"></div>
-                </div>
-            </div>
-            
-            <div class="controls">
-                <button class="rocket-btn" onclick="launchRocket()">🚀 즉시 발사!</button>
-                <button class="rocket-btn" onclick="resetRocket()">🔄 리셋</button>
-            </div>
-        </div>
-        
-        <div class="mission-box">
-            <h3>📝 미션</h3>
-            <ol>
-                <li><strong>@starting-style:</strong> 로켓이 처음에 투명한 상태로 시작</li>
-                <li><strong>발사 시퀀스:</strong> 불꽃 → 진동 → 상승 순서로 애니메이션</li>
-                <li><strong>복합 변형:</strong> 상승하면서 회전과 크기 변화 동시 적용</li>
-                <li><strong>배경 효과:</strong> 별과 구름도 함께 움직이게 하기</li>
-            </ol>
-        </div>
-    </section>
-
-    <!-- 예제 4: 카드 뒤집기 (3D Transform & allow-discrete) -->
+    <!-- 예제 3: 카드 뒤집기 (3D Transform & allow-discrete) -->
     <section id="cards" class="practice-section">
         <div class="section-header">
             <h2>🃏 카드 뒤집기</h2>
@@ -241,7 +185,7 @@
         </div>
     </section>
 
-    <!-- 예제 5: 파도 효과 (Infinite Keyframes) -->
+    <!-- 예제 4: 파도 효과 (Infinite Keyframes) -->
     <section id="waves" class="practice-section">
         <div class="section-header">
             <h2>🌊 파도 효과</h2>

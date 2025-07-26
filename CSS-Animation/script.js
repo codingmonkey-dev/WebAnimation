@@ -90,36 +90,7 @@ function moveBasket(direction) {
 }
 
 /* =================================
-   예제 3: 로켓 발사 🚀
-   ================================= */
-
-function launchRocket() {
-    const rocket = document.getElementById('rocket');
-    
-    // 이전 애니메이션 리셋
-    rocket.classList.remove('launching');
-
-    // 강제로 리플로우 트리거
-    rocket.offsetHeight;
-
-    // 즉시 발사!
-    setTimeout(() => {
-        rocket.classList.add('launching');
-    }, 100);
-    
-    // 발사 완료 후 자동 리셋
-    setTimeout(() => {
-        resetRocket();
-    }, 4000);
-}
-
-function resetRocket() {
-    const rocket = document.getElementById('rocket');
-    rocket.classList.remove('launching');
-}
-
-/* =================================
-   예제 4: 카드 뒤집기 🃏
+   예제 3: 카드 뒤집기 🃏
    ================================= */
 
 let score = 0;
@@ -200,7 +171,7 @@ function updateScore() {
 }
 
 /* =================================
-   예제 5: 파도 효과 🌊
+   예제 4: 파도 효과 🌊
    ================================= */
 
 let wavesAnimationEnabled = true;
